@@ -7,13 +7,20 @@
 
 """functions to work with extensiblefields"""
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
-def extensiblefields2list(idfobject):
+# from six import StringIO
+# from six import string_types
+
+def simplelist(idfobject):
     """return the extensible field as a list"""
     pass
-    
+
 from witheppy.eppyhelpers import iddhelpers
-def simplelist(idfobject):
+def extensiblefields2list(idfobject):
     # iddhelpers.hasextensible(blist1(objidd))
     if iddhelpers.hasextensible(idfobject.objidd):
         start = iddhelpers.beginextensible_at(idfobject.objidd)
