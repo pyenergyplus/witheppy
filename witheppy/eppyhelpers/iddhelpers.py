@@ -41,5 +41,3 @@ def beginextensible_at(objidd):
                 return i
                 break
     return None
-    
-
