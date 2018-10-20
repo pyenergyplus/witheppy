@@ -70,7 +70,7 @@ def beginextensible_at(objidd):
 
     Marks the first field at which the object accepts an extensible
     field set.  A fixed number of fields from this marker define the
-    extensible field set, see the object code extensible for
+    extensible field set,  see the object code extensible for
     more information.
 
     Parameters
