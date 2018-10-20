@@ -26,11 +26,13 @@ try:
 except ImportError as e:
     from itertools import izip_longest as zip_longest
 
+
 def grouper(iterable, n, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * n
     return zip_longest(*args, fillvalue=fillvalue)
+
 
 def extensiblefields2list(idfobject, nested=True):
     """returns extensible fields of idfobject as a list
@@ -54,7 +56,7 @@ def extensiblefields2list(idfobject, nested=True):
         start = iddhelpers.beginextensible_at(idfobject.objidd)
         extvalues = idfobject.fieldvalues[start:]
         ext_n = iddhelpers.hasextensible(idfobject.objidd)
-        if nested and ext_n>1:
+        if nested and ext_n > 1:
             return list(grouper(extvalues, ext_n))
         else:
             return extvalues
@@ -84,7 +86,7 @@ def list2extensiblefields(idfobject, lst, nested=True):
     """
     start = iddhelpers.beginextensible_at(idfobject.objidd)
     ext_n = iddhelpers.hasextensible(idfobject.objidd)
-    if nested and ext_n>1:
+    if nested and ext_n > 1:
         ulst = list(chain.from_iterable(lst))  # unpack nesting
     else:
         ulst = lst
