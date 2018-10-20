@@ -8,18 +8,6 @@ Subpackages
 
     witheppy.eppyhelpers
 
-Submodules
-----------
-
-witheppy.witheppy module
-------------------------
-
-.. automodule:: witheppy.witheppy
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
 Module contents
 ---------------
 

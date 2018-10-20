@@ -16,16 +16,25 @@ from __future__ import unicode_literals
 # from six import string_types
 from witheppy.eppyhelpers import iddhelpers
 
-# TODO
-#
-# - numpy type doc comments
-# - common idd reader for tests
-# - now extensiblefields2list returns flat list - can return nested lists
-# - useful to return first field names - first_extfieldnames(idfobject)
-
 
 def extensiblefields2list(idfobject):
-    """get the list of extensible fields from the idfobject"""
+    """returns extensible fields of idfobject as a list
+
+    It is useful to have the fields as a list. It is easy to manipulate
+    the items in the list, by using the list functions such as pop, insert,
+    remove etc. This list can be put back in the idfobject by using the
+    function list2extensiblefields(...)
+
+    Parameters
+    ----------
+    idfobject : eppy.bunch_subclass.EpBunch
+        an idfobject such as BRANCHLIST, BUILDINGSURFACE:DETAILED etc.
+
+    Returns
+    -------
+    list
+        all the extended field values as a list
+    """
     if iddhelpers.hasextensible(idfobject.objidd):
         start = iddhelpers.beginextensible_at(idfobject.objidd)
         return idfobject.fieldvalues[start:]
@@ -34,7 +43,25 @@ def extensiblefields2list(idfobject):
 
 
 def list2extensiblefields(idfobject, lst):
-    """push a list of extensible fields into the idfobject"""
+    """Replaces the items in the extensible fields with items in lst
+
+    This function is a counterpart to the function extensiblefields2list().
+    The list returned by extensiblefields2list can be changed and put back into
+    the idfobject by this function
+
+    Parameters
+    ----------
+    idfobject : eppy.bunch_subclass.EpBunch
+        an idfobject such as BRANCHLIST, BUILDINGSURFACE:DETAILED etc.
+    lst: list
+        This list will replace the items in the extended fields
+        of the idfobject
+
+    Returns
+    -------
+    eppy.bunch_subclass.EpBunch
+        the idfobject is changed in place and returned by the function
+    """
     start = iddhelpers.beginextensible_at(idfobject.objidd)
     idfobject.obj = idfobject.obj[:start] + lst
     return idfobject
