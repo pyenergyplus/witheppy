@@ -308,5 +308,4 @@ def test_list2extensiblefields():
         idfobject = idf.idfobjects[idfkey.upper()][0]
         extfields.list2extensiblefields(idfobject, nlst)
         result = extfields.extensiblefields2list(idfobject)
-        print(idfobject)
         assert result == expected
