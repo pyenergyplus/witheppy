@@ -270,7 +270,8 @@ IDF.setiddname(StringIO(iddtxt))
 
 def test_extensiblefields2list():
     """py.test for extensiblefields2list"""
-    tdata = ((
+    tdata = (
+    (
         "branchlist", False,
         [
             "Heating Supply Inlet Branch",
@@ -294,6 +295,14 @@ def test_extensiblefields2list():
             (30.5, 0.0, 2.4),
             (30.5, 0.0, 3.0)
         ]),  # idfkey, nested, expected
+    (
+        "branchlist", True,
+        [
+            "Heating Supply Inlet Branch",
+            "Central Boiler Branch",
+            "Heating Supply Bypass Branch",
+            "Heating Supply Outlet Branch"
+        ]),  # idfkey, nested, expected
         (
         "version", False, None),  # idfkey, nested, expected
     )
@@ -307,11 +316,12 @@ def test_extensiblefields2list():
 def test_list2extensiblefields():
     """py.test for list2extensiblefields"""
     tdata = (
-        ("branchlist", [11, 22, 33], False, [11, 22, 33]),  # idfkey, nlst, nested, expected
+        ("branchlist", ["11", "22", "33"], False, ["11", "22", "33"]),  # idfkey, nlst, nested, expected
         ("BuildingSurface:Detailed",
             [11, 22, 33], False, [11, 22, 33]),  # idfkey, nlst, nested, expected
         ("BuildingSurface:Detailed",
             [(1,2,3),(11, 22, 33)], True, [(1,2,3), (11, 22, 33)]),  # idfkey, nlst, nested, expected
+        ("branchlist", ["11", "22", "33"], True, ["11", "22", "33"]),  # idfkey, nlst, nested, expected
     )
     for idfkey, nlst, nested, expected in tdata:
         idf = IDF(StringIO(idftxt))

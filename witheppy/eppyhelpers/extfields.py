@@ -15,7 +15,6 @@ from __future__ import unicode_literals
 
 # TODO : update the docstrings for nested=True
 # TODO : run lint
-# TODO : will fail on branchlist if nested=True
 
 # from six import StringIO
 # from six import string_types
@@ -54,8 +53,8 @@ def extensiblefields2list(idfobject, nested=True):
     if iddhelpers.hasextensible(idfobject.objidd):
         start = iddhelpers.beginextensible_at(idfobject.objidd)
         extvalues = idfobject.fieldvalues[start:]
-        if nested:
-            ext_n = iddhelpers.hasextensible(idfobject.objidd)
+        ext_n = iddhelpers.hasextensible(idfobject.objidd)
+        if nested and ext_n>1:
             return list(grouper(extvalues, ext_n))
         else:
             return extvalues
@@ -84,7 +83,8 @@ def list2extensiblefields(idfobject, lst, nested=True):
         the idfobject is changed in place and returned by the function
     """
     start = iddhelpers.beginextensible_at(idfobject.objidd)
-    if nested:
+    ext_n = iddhelpers.hasextensible(idfobject.objidd)
+    if nested and ext_n>1:
         ulst = list(chain.from_iterable(lst))  # unpack nesting
     else:
         ulst = lst
