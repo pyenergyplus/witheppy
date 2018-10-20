@@ -14,7 +14,6 @@ from __future__ import unicode_literals
 
 
 # TODO : update the docstrings for nested=True
-# TODO : run lint
 
 # from six import StringIO
 # from six import string_types
