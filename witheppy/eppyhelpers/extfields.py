@@ -41,6 +41,11 @@ def extensiblefields2list(idfobject, nested=True):
     remove etc. This list can be put back in the idfobject by using the
     function list2extensiblefields(...)
 
+    if nested=True, a nested list will be returned.
+    With nested=True, BUILDINGSURFACE:DETAILED will return
+    [(1,2,3),(2,3,4),(3,4,5)]. With nested=False, it will return
+    [1,2,3,2,3,4,3,4,5]
+
     Parameters
     ----------
     idfobject : eppy.bunch_subclass.EpBunch
@@ -63,7 +68,7 @@ def extensiblefields2list(idfobject, nested=True):
         return None
 
 
-def list2extensiblefields(idfobject, lst, nested=True):
+def list2extensiblefields(idfobject, lst):
     """Replaces the items in the extensible fields with items in lst
 
     This function is a counterpart to the function extensiblefields2list().
@@ -84,8 +89,7 @@ def list2extensiblefields(idfobject, lst, nested=True):
         the idfobject is changed in place and returned by the function
     """
     start = iddhelpers.beginextensible_at(idfobject.objidd)
-    ext_n = iddhelpers.hasextensible(idfobject.objidd)
-    if nested and ext_n > 1:
+    if any(isinstance(item, (list, tuple)) for item in lst):
         ulst = list(chain.from_iterable(lst))  # unpack nesting
     else:
         ulst = lst

@@ -320,20 +320,26 @@ def test_extensiblefields2list():
 def test_list2extensiblefields():
     """py.test for list2extensiblefields"""
     tdata = (
-        ("branchlist", ["11", "22", "33"], False,
-            ["11", "22", "33"]),  # idfkey, nlst, nested, expected
+        ("branchlist", ["11", "22", "33"],
+            ["11", "22", "33"]),  # idfkey, nlst, expected
         ("BuildingSurface:Detailed",
-            [11, 22, 33], False,
-            [11, 22, 33]),  # idfkey, nlst, nested, expected
+            [11, 22, 33, 1, 2, 3],
+            [(11, 22, 33), (1, 2, 3)]),  # idfkey, nlst, expected
         ("BuildingSurface:Detailed",
             [(1, 2, 3), (11, 22, 33)],
-            True, [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, nested, expected
+            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
+        ("BuildingSurface:Detailed",
+            [(1, 2, 3), (11, 22, 33)],
+            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
+        ("BuildingSurface:Detailed",
+            [(1, 2, 3), (11, 22, 33)],
+            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
         ("branchlist", ["11", "22", "33"],
-            True, ["11", "22", "33"]),  # idfkey, nlst, nested, expected
+            ["11", "22", "33"]),  # idfkey, nlst, expected
     )
-    for idfkey, nlst, nested, expected in tdata:
+    for idfkey, nlst, expected in tdata:
         idf = IDF(StringIO(idftxt))
         idfobject = idf.idfobjects[idfkey.upper()][0]
-        extfields.list2extensiblefields(idfobject, nlst, nested=nested)
-        result = extfields.extensiblefields2list(idfobject, nested=nested)
+        extfields.list2extensiblefields(idfobject, nlst)
+        result = extfields.extensiblefields2list(idfobject, nested=True)
         assert result == expected
