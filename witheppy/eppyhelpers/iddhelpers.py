@@ -88,5 +88,4 @@ def beginextensible_at(objidd):
         for i, idditem in enumerate(objidd):
             if u'begin-extensible' in idditem:
                 return i
-                break
     return None
