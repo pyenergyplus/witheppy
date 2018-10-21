@@ -237,7 +237,128 @@ N25, \\field Vertex 8 Y-coordinate
    \\units m
 N26; \\field Vertex 8 Z-coordinate
    \\units m
-   \\type real"""  # noqa: E501
+   \\type real
+
+Schedule:Week:Compact,
+  \\extensible:2 - repeat last two fields, remembering to remove ; from "inner" fields.
+  \\memo Compact definition for Schedule:Day:List
+  \\min-fields 3
+  A1 , \\field Name
+       \\required-field
+       \\reference WeekScheduleNames
+       \\type alpha
+  A2 , \\field DayType List 1
+       \\begin-extensible
+       \\note "For" is an optional prefix/start of the For fields.  Choices can be combined on single line
+       \\note if separated by spaces. i.e. "Holiday Weekends"
+       \\note Should have a space after For, if it is included. i.e. "For Alldays"
+       \\required-field
+       \\type choice
+       \\key AllDays
+       \\key AllOtherDays
+       \\key Weekdays
+       \\key Weekends
+       \\key Sunday
+       \\key Monday
+       \\key Tuesday
+       \\key Wednesday
+       \\key Thursday
+       \\key Friday
+       \\key Saturday
+       \\key Holiday
+       \\key SummerDesignDay
+       \\key WinterDesignDay
+       \\key CustomDay1
+       \\key CustomDay2
+  A3 , \\field Schedule:Day Name 1
+       \\required-field
+       \\type object-list
+       \\object-list DayScheduleNames
+  A4 , \\field DayType List 2
+       \\type choice
+       \\key AllDays
+       \\key AllOtherDays
+       \\key Weekdays
+       \\key Weekends
+       \\key Sunday
+       \\key Monday
+       \\key Tuesday
+       \\key Wednesday
+       \\key Thursday
+       \\key Friday
+       \\key Saturday
+       \\key Holiday
+       \\key SummerDesignDay
+       \\key WinterDesignDay
+       \\key CustomDay1
+       \\key CustomDay2
+  A5 , \\field Schedule:Day Name 2
+       \\type object-list
+       \\object-list DayScheduleNames
+  A6 , \\field DayType List 3
+       \\type choice
+       \\key AllDays
+       \\key AllOtherDays
+       \\key Weekdays
+       \\key Weekends
+       \\key Sunday
+       \\key Monday
+       \\key Tuesday
+       \\key Wednesday
+       \\key Thursday
+       \\key Friday
+       \\key Saturday
+       \\key Holiday
+       \\key SummerDesignDay
+       \\key WinterDesignDay
+       \\key CustomDay1
+       \\key CustomDay2
+  A7 , \\field Schedule:Day Name 3
+       \\type object-list
+       \\object-list DayScheduleNames
+  A8 , \\field DayType List 4
+       \\type choice
+       \\key AllDays
+       \\key AllOtherDays
+       \\key Weekdays
+       \\key Weekends
+       \\key Sunday
+       \\key Monday
+       \\key Tuesday
+       \\key Wednesday
+       \\key Thursday
+       \\key Friday
+       \\key Saturday
+       \\key Holiday
+       \\key SummerDesignDay
+       \\key WinterDesignDay
+       \\key CustomDay1
+       \\key CustomDay2
+  A9 , \\field Schedule:Day Name 4
+       \\type object-list
+       \\object-list DayScheduleNames
+  A10, \\field DayType List 5
+       \\type choice
+       \\key AllDays
+       \\key AllOtherDays
+       \\key Weekdays
+       \\key Weekends
+       \\key Sunday
+       \\key Monday
+       \\key Tuesday
+       \\key Wednesday
+       \\key Thursday
+       \\key Friday
+       \\key Saturday
+       \\key Holiday
+       \\key SummerDesignDay
+       \\key WinterDesignDay
+       \\key CustomDay1
+       \\key CustomDay2
+  A11; \\field Schedule:Day Name 5
+       \\type object-list
+       \\object-list DayScheduleNames
+"""  # noqa: E501
 
 idftxt = """Version,8.9;
 
@@ -315,6 +436,12 @@ def test_extensiblefields2list():
         idfobject = idf.idfobjects[idfkey.upper()][0]
         result = extfields.extensiblefields2list(idfobject, nested=nested)
         assert result == expected
+    # test for edge conditions
+    # there no values in the extensible fields
+    key = "Schedule:Week:Compact".upper()
+    idfobject = idf.newidfobject(key)
+    result = extfields.extensiblefields2list(idfobject)
+    assert result == []
 
 
 def test_list2extensiblefields():
@@ -343,3 +470,32 @@ def test_list2extensiblefields():
         extfields.list2extensiblefields(idfobject, nlst)
         result = extfields.extensiblefields2list(idfobject, nested=True)
         assert result == expected
+    # test for edge conditions
+    # there no values in the extensible fields
+    # and the field just before begin-extensible field has no value
+    key = "Schedule:Week:Compact".upper()
+    idfobject = idf.newidfobject(key)
+    nlst = [1, 2, 3, 4]
+    expected = [1, 2, 3, 4]
+    extfields.list2extensiblefields(idfobject, nlst)
+    result = extfields.extensiblefields2list(idfobject, nested=False)
+    assert result == expected
+
+
+def extendlist():
+    """py.test for extendlist"""
+    tdata = (
+        ([1, 2, 3], 5, "", [1, 2, 3, "", ""]),  # lst, size, fillwith, expected
+        ([1, 2, 3], 3, "", [1, 2, 3]),  # lst, size, fillwith, expected
+        ([1, 2, 3], 2, "", [1, 2, 3]),  # lst, size, fillwith, expected
+    )
+    for lst, size, fillwith, expected in tdata:
+        result = extfields.extendlist(lst, size, fillwith=fillwith)
+        assert result == expected
+
+
+def test_grouper():
+    """py.test for grouper"""
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx""
+    result = list(extfields.grouper([1, 2, 3, 4, 5, 6, 7], 3, 9))
+    assert result == [(1, 2, 3), (4, 5, 6), (7, 9, 9)]
