@@ -40,7 +40,7 @@ setup(
     include_package_data=True,
     keywords='witheppy',
     name='witheppy',
-    packages=find_packages(include=['witheppy']),
+    packages=find_packages(include=['witheppy', 'witheppy.eppyhelpers']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
