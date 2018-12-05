@@ -42,7 +42,7 @@ setup(
     name='witheppy',
     packages = find_packages(include=['witheppy', 'witheppy.eppyhelpers']),
     setup_requires=setup_requirements,
-    test_suite='tests',
+    test_suite = 'tests',
     tests_require=test_requirements,
     url='https://github.com/pyenergyplus/witheppy',
     version='0.1.0',
