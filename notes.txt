@@ -1,1 +1,11 @@
 a place to keep notes 
+
+2018-12-09
+----------
+
+git remote add upstream https://github.com/pyenergyplus/witheppy.git
+git pull --rebase upstream master
+
+# First time in python3
+python3 -m venv ~/venvs/witheppy
+source ~/venvs/witheppy/bin/activate
