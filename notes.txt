@@ -8,6 +8,8 @@ Install from github
 pip install https://github.com/santoshphilip/witheppy/archive/master.zip
 pip install https://github.com/pyenergyplus/witheppy/archive/master.zip
 
+release to pypi - Do it from clean machine
+
 
 2018-12-09
 ----------
