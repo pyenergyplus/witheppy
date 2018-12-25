@@ -1,5 +1,14 @@
 a place to keep notes 
 
+2018-12-24
+----------
+
+Install from github
+
+pip install https://github.com/santoshphilip/witheppy/archive/master.zip
+pip install https://github.com/pyenergyplus/witheppy/archive/master.zip
+
+
 2018-12-09
 ----------
 
@@ -7,5 +16,5 @@ git remote add upstream https://github.com/pyenergyplus/witheppy.git
 git pull --rebase upstream master
 
 # First time in python3
-python3 -m venv ~/venvs/witheppy
-source ~/venvs/witheppy/bin/activate
+python3 -m venv ~/venvs/py3witheppy
+source ~/venvs/py3witheppy/bin/activate
