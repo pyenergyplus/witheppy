@@ -1,5 +1,14 @@
 a place to keep notes 
 
+2018-12-24
+----------
+
+Install from github
+
+pip install https://github.com/santoshphilip/witheppy/archive/master.zip
+pip install https://github.com/pyenergyplus/witheppy/archive/master.zip
+
+
 2018-12-09
 ----------
 
