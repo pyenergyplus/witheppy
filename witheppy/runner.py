@@ -1,3 +1,10 @@
+# Copyright (c) 2019 Santosh Philip
+# =======================================================================
+#  Distributed under the MIT License.
+#  (See accompanying file LICENSE or copy at
+#  http://opensource.org/licenses/MIT)
+# =======================================================================
+
 """helpers that enhance idf.run"""
 
 import os
@@ -16,9 +23,9 @@ def eplaunch_run(idf, weather=None):
 
 
 # TODO : Use this function to build a bunch of things that are needed:
-- read idd from disk for testing
-- see how eppy does testing for run
-- then test this function and all the edge conditions for this function.
+# - read idd from disk for testing
+# - see how eppy does testing for run
+# - then test this function and all the edge conditions for this function.
 
 # --
 fname = "/Users/santosh/Documents/temp/eppyz-run/run2/1ZoneDataCenterCRAC_wPumpedDXCoolingCoil.idf"
