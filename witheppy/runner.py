@@ -15,8 +15,27 @@ import os
 
 
 def eplaunch_run(idf, weather=None):
-    """run the way eplaunch would run one simulation"""
-    # TODO : function docs
+    """Run the E+ simulation exactly as EPLaunch would run a single file
+    with it's default setting
+
+    EPLaunch does the following by default:
+
+        - expands the Template objects
+        - puts the out output files in the same folder as the idf
+        - Uses idf filename as the output prefix
+        - Uses Capitals for the output suffix
+
+    Parameters
+    ----------
+    idf : modelbuilder.IDF
+        the idf file
+    weather : str, optional
+        if weather is None, it will use idf.epw for weather
+
+    Returns
+    -------
+    NoneType
+    """
     fname = idf.idfname
     if not weather:
         wfile = idf.epw
