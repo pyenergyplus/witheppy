@@ -23,7 +23,8 @@ def eplaunch_run(idf, weather=None):
         wfile = weather
     folder = os.path.dirname(fname)
     noext = os.path.splitext(os.path.basename(fname))[0]
-    idf.run(expandobjects=True, output_directory=folder, output_prefix=noext)
+    print("*" * 15, noext, "*" * 15)
+    idf.run(expandobjects=True, output_directory=folder, output_prefix=noext, output_suffix="C")
 
 
 # TODO : Use this function to build a bunch of things that are needed:
