@@ -4,8 +4,12 @@
 #  (See accompanying file LICENSE or copy at
 #  http://opensource.org/licenses/MIT)
 # =======================================================================
-
 """helpers that enhance idf.run"""
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import os
 import eppy
@@ -28,8 +32,8 @@ def eplaunch_run(idf, weather=None):
 # - then test this function and all the edge conditions for this function.
 
 # --
-fname = "/Users/santosh/Documents/temp/eppyz-run/run2/1ZoneDataCenterCRAC_wPumpedDXCoolingCoil.idf"
-wfile = "/Users/santosh/Documents/temp/eppyz-run/USA_CO_Denver/USA_CO_Denver.Intl.AP.725650_TMY3.epw"
-idf = eppy.openidf(fname, epw=wfile)
-eplaunch_run(idf)
-
+# fname = "/Users/santosh/Documents/temp/eppyz-run/run2/1ZoneDataCenterCRAC_wPumpedDXCoolingCoil.idf"
+# wfile = "/Users/santosh/Documents/temp/eppyz-run/USA_CO_Denver/USA_CO_Denver.Intl.AP.725650_TMY3.epw"
+# idf = eppy.openidf(fname, epw=wfile)
+# eplaunch_run(idf)
+#
