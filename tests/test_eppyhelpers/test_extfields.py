@@ -386,7 +386,7 @@ Heating Supply Bypass Branch,  !- Branch 3 Name
 Heating Supply Outlet Branch;  !- Branch 4 Name
 """
 
-if IDF.getiddname() == None:
+if IDF.getiddname() is None:
     IDF.setiddname(StringIO(iddtxt))
 
 
