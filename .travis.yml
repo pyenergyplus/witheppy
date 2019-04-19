@@ -84,7 +84,7 @@ install:
   # install numpy and remove tinynumpy if testing with numpy
   - if [[ $NUMPY == numpy ]]; then pip install numpy; pip uninstall tinynumpy -y; fi
 
-script: py.test ./eppy/tests --cov=./ -v
+script: py.test ./tests --cov=./ -v
 
 after_success:
   # coverage reporting on CodeCov
