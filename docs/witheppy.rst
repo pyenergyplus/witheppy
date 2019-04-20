@@ -8,6 +8,18 @@ Subpackages
 
     witheppy.eppyhelpers
 
+Submodules
+----------
+
+witheppy.runner module
+----------------------
+
+.. automodule:: witheppy.runner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
 Module contents
 ---------------
 

@@ -1,31 +1,52 @@
-# Config file for automatic testing at travis-ci.org
+language: cpp
 
-language: python
-python:
-  - 3.6
-  - 3.5
-  - 3.4
-  - 2.7
+os: 
+  - linux
 
-# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: 
-  - pip install -U tox-travis
-  - pip install -r requirements.txt
+dist: trusty
+sudo: required 
 
-# Command to run tests, e.g. python setup.py test
-script: tox
+env:
+  - PYTHON=2.7 EPPY_INTEGRATION=True ENERGYPLUS_VERSION=9.0.1 ENERGYPLUS_SHA=bb7ca4f0da ENERGYPLUS_INSTALL_VERSION=9-0-1
+  - PYTHON=3.5 EPPY_INTEGRATION=True ENERGYPLUS_VERSION=9.0.1 ENERGYPLUS_SHA=bb7ca4f0da ENERGYPLUS_INSTALL_VERSION=9-0-1
 
-# Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
-# following command to finish PyPI deployment setup:
-# $ travis encrypt --add deploy.password
-# deploy:
-#   provider: pypi
-#   distributions: sdist bdist_wheel
-#   user: santoshphilip
-#   password:
-#     secure: PLEASE_REPLACE_ME
-#   on:
-#     tags: true
-#     repo: pyenergyplus/witheppy
-#     python: 3.6
+before_install:
+  # install EnergyPlus
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then EXT=dmg; PLATFORM=Darwin; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then EXT=sh; PLATFORM=Linux; fi
+  - ENERGYPLUS_DOWNLOAD_BASE_URL=https://github.com/NREL/EnergyPlus/releases/download/v$ENERGYPLUS_VERSION
+  - ENERGYPLUS_DOWNLOAD_FILENAME=EnergyPlus-$ENERGYPLUS_VERSION-$ENERGYPLUS_SHA-$PLATFORM-x86_64
+  - ENERGYPLUS_DOWNLOAD_URL=$ENERGYPLUS_DOWNLOAD_BASE_URL/$ENERGYPLUS_DOWNLOAD_FILENAME.$EXT
+  - curl -SLO $ENERGYPLUS_DOWNLOAD_URL
+
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+        sudo chmod +x $ENERGYPLUS_DOWNLOAD_FILENAME.$EXT;
+        echo "y\r" | sudo ./$ENERGYPLUS_DOWNLOAD_FILENAME.$EXT;
+    fi
+  - sudo rm $ENERGYPLUS_DOWNLOAD_FILENAME.$EXT
+
+  # install python
+
+  # actiate venv
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then virtualenv venv; fi
+  - source venv/bin/activate;
+  - python --version;
+
+  # coverage and testing requirements
+  - pip install --upgrade setuptools
+  - pip install --upgrade pip
+  - pip install pytest-cov
+  - pip install codecov
+
+install:
+  - python setup.py install
+
+script: py.test ./tests --cov=./ -v
+
+after_success:
+  # coverage reporting on CodeCov
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] &&
+       [[ $PYTHON == 3* ]] &&
+       [[ $EPPY_INTEGRATION == True ]] &&
+       [[ $NUMPY == numpy ]]; then codecov; fi
+
