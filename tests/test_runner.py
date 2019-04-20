@@ -28,7 +28,7 @@ IDF_FILES = os.path.join(RESOURCES_DIR, 'idffiles')
 try:
     VERSION = os.environ["ENERGYPLUS_INSTALL_VERSION"]  # used in CI files
 except KeyError:
-    VERSION = '8-9-0'  # current default for integration tests on local system
+    VERSION = '9-0-1'  # current default for integration tests on local system
 TEST_IDF_NAME = 'smallfile.idf'
 TEST_IDF = "V{}/{}".format(VERSION[:3].replace('-', '_'), TEST_IDF_NAME)
 TEST_EPW = 'USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw'
