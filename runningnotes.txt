@@ -3,3 +3,5 @@ list of TODOs that come up while coding.
 - continuous testing should install Energyplus to idf.run()
 - looks like idf.run() may be changing idf.idfname ot in.idf
 - is the tests in runner changing the idf.iddname when it runs
+
+- finished eplaunch_run(idf) with continious testing on linux
