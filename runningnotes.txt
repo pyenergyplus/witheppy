@@ -1,3 +1,10 @@
+2019-05-06
+----------
+
+pip install https://github.com/santoshphilip/eppy/archive/master.zip
+
+
+
 list of TODOs that come up while coding.
 
 - continuous testing should install Energyplus to idf.run()
