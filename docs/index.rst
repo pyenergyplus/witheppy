@@ -8,6 +8,7 @@ Welcome to witheppy's documentation!
    readme
    installation
    usage
+   userdocs
    modules
    contributing
    authors
