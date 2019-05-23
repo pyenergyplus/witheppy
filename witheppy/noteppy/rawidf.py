@@ -45,7 +45,7 @@ def readrawidf(fhandle):
         rawidf[key].append(lst)
     return rawidf
 
-def rawidf2str(rawidf, order=None):
+def rawidf2str(rawidf, order=None): # rname var rawidf -> potential nameclash
     """string rep of rawidf"""
     lst = []
     if order:
@@ -53,13 +53,16 @@ def rawidf2str(rawidf, order=None):
     else:
         keys = rawidf.keys()
     for key in keys:
-        for vals in rawidf[key]:
-            lst.append('{},'.format(key))
-            for val in vals[1:]:
-                lst.append('     {},'.format(val))
-            lst.pop(-1)
-            lst.append('    {};'.format(val))
-            lst.append('')
+        try:
+            for vals in rawidf[key]:
+                lst.append('{},'.format(key))
+                for val in vals[1:]:
+                    lst.append('     {},'.format(val))
+                lst.pop(-1)
+                lst.append('    {};'.format(val))
+                lst.append('')
+        except KeyError as e:
+            continue
     return '\n'.join(lst)
 
 
