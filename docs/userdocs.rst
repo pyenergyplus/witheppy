@@ -5,7 +5,7 @@ User Documentation
 EP-Launch Functionality with eppy
 ---------------------------------
 
-Most people use  
+Most people use
 `Ep-Launch <https://bigladdersoftware.com/epx/docs/8-3/getting-started/ep-launch-program.html>`_ to run Energyplus simulation. The usage is straightforward. The steps are as follows:
 
 - select an idf file to run
@@ -22,17 +22,13 @@ Eppy has an idf.run() function that is a thin wrapper around the shell script th
 
 It would be useful to have a function that runs Energyplus the same way the EP-Launch would run it. Witheppy has a function does this. It works in the following manner
 
-The code below works with the latest version of eppy. You may want to do the following::
+Try the following code::
 
-    pip uninstall eppy
-    pip install https://github.com/santoshphilip/eppy/archive/master.zip
-
-Now try the following code::
-
+    # works with eppy > 0.5.49
     fname = "witheppy/resources/idffiles/V8_5/smallfile.idf"
     weatherfile = "./witheppy/resources/weather/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
     import eppy
     idf = eppy.openidf(fname, epw=weatherfile)
     import witheppy.runner
     witheppy.runner.eplaunch_run(idf)
-    
+
