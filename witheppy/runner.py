@@ -14,7 +14,7 @@ from __future__ import unicode_literals
 import os
 
 
-def eplaunch_run(idf, weather=None):
+def eplaunch_run(idf):
     """Run the E+ simulation exactly as EPLaunch would run a single file
     with it's default setting
 
@@ -28,15 +28,13 @@ def eplaunch_run(idf, weather=None):
     Parameters
     ----------
     idf : modelbuilder.IDF
-        the idf file
-    weather : str, optional
-        if weather is None, it will use idf.epw for weather
-
+        the idf file. The idf file needs a weather file when opened
     Returns
     -------
     NoneType
     """
     fname = idf.idfname
+    weather = None # add weather args after bugfix for issue #236
     if not weather:
         wfile = idf.epw
     else:
