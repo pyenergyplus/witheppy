@@ -34,27 +34,27 @@ def readrawidf(fhandle):
     idfst = nocom
     scount = 0
     alist = idfst.split(';')
-    rawidf = {}
+    rawdata = {}
     for element in alist:
         lst = element.split(',')
         lst = [item.strip() for item in lst]
         key = lst[0].strip().upper()
         if not key:
             continue
-        rawidf.setdefault(key, [])
-        rawidf[key].append(lst)
-    return rawidf
+        rawdata.setdefault(key, [])
+        rawdata[key].append(lst)
+    return rawdata
 
-def rawidf2str(rawidf, order=None): # rname var rawidf -> potential nameclash
-    """string rep of rawidf"""
+def rawidf2str(rawdata, order=None):
+    """string rep of rawdata"""
     lst = []
     if order:
         keys = order
     else:
-        keys = rawidf.keys()
+        keys = rawdata.keys()
     for key in keys:
         try:
-            for vals in rawidf[key]:
+            for vals in rawdata[key]:
                 lst.append('{},'.format(key))
                 for val in vals[1:]:
                     lst.append('     {},'.format(val))
