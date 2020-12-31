@@ -9,6 +9,7 @@ Welcome to witheppy's documentation!
    installation
    usage
    userdocs
+   for_ipython
    modules
    contributing
    authors

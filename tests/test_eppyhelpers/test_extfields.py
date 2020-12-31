@@ -13,6 +13,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from six import StringIO
+
 # from six import string_types
 
 from witheppy.eppyhelpers import extfields
@@ -394,43 +395,36 @@ def test_extensiblefields2list():
     """py.test for extensiblefields2list"""
     tdata = (
         (
-            "branchlist", False,
+            "branchlist",
+            False,
             [
                 "Heating Supply Inlet Branch",
                 "Central Boiler Branch",
                 "Heating Supply Bypass Branch",
-                "Heating Supply Outlet Branch"
-            ]
+                "Heating Supply Outlet Branch",
+            ],
         ),  # idfkey, nested, expected
         (
-            "BuildingSurface:Detailed", False,
-            [
-                0.0, 0.0, 3.0,
-                0.0, 0.0, 2.4,
-                30.5, 0.0, 2.4,
-                30.5, 0.0, 3.0
-            ]
+            "BuildingSurface:Detailed",
+            False,
+            [0.0, 0.0, 3.0, 0.0, 0.0, 2.4, 30.5, 0.0, 2.4, 30.5, 0.0, 3.0],
         ),  # idfkey, nested, expected
         (
-            "BuildingSurface:Detailed", True,
-            [
-                (0.0, 0.0, 3.0),
-                (0.0, 0.0, 2.4),
-                (30.5, 0.0, 2.4),
-                (30.5, 0.0, 3.0)
-            ]
+            "BuildingSurface:Detailed",
+            True,
+            [(0.0, 0.0, 3.0), (0.0, 0.0, 2.4), (30.5, 0.0, 2.4), (30.5, 0.0, 3.0)],
         ),  # idfkey, nested, expected
         (
-            "branchlist", True,
+            "branchlist",
+            True,
             [
                 "Heating Supply Inlet Branch",
                 "Central Boiler Branch",
                 "Heating Supply Bypass Branch",
-                "Heating Supply Outlet Branch"
-            ]
+                "Heating Supply Outlet Branch",
+            ],
         ),  # idfkey, nested, expected
-        (
-            "version", False, None),  # idfkey, nested, expected
+        ("version", False, None),  # idfkey, nested, expected
     )
     for idfkey, nested, expected in tdata:
         idf = IDF(StringIO(idftxt))
@@ -448,22 +442,36 @@ def test_extensiblefields2list():
 def test_list2extensiblefields():
     """py.test for list2extensiblefields"""
     tdata = (
-        ("branchlist", ["11", "22", "33"],
-            ["11", "22", "33"]),  # idfkey, nlst, expected
-        ("BuildingSurface:Detailed",
+        (
+            "branchlist",
+            ["11", "22", "33"],
+            ["11", "22", "33"],
+        ),  # idfkey, nlst, expected
+        (
+            "BuildingSurface:Detailed",
             [11, 22, 33, 1, 2, 3],
-            [(11, 22, 33), (1, 2, 3)]),  # idfkey, nlst, expected
-        ("BuildingSurface:Detailed",
+            [(11, 22, 33), (1, 2, 3)],
+        ),  # idfkey, nlst, expected
+        (
+            "BuildingSurface:Detailed",
             [(1, 2, 3), (11, 22, 33)],
-            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
-        ("BuildingSurface:Detailed",
             [(1, 2, 3), (11, 22, 33)],
-            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
-        ("BuildingSurface:Detailed",
+        ),  # idfkey, nlst, expected
+        (
+            "BuildingSurface:Detailed",
             [(1, 2, 3), (11, 22, 33)],
-            [(1, 2, 3), (11, 22, 33)]),  # idfkey, nlst, expected
-        ("branchlist", ["11", "22", "33"],
-            ["11", "22", "33"]),  # idfkey, nlst, expected
+            [(1, 2, 3), (11, 22, 33)],
+        ),  # idfkey, nlst, expected
+        (
+            "BuildingSurface:Detailed",
+            [(1, 2, 3), (11, 22, 33)],
+            [(1, 2, 3), (11, 22, 33)],
+        ),  # idfkey, nlst, expected
+        (
+            "branchlist",
+            ["11", "22", "33"],
+            ["11", "22", "33"],
+        ),  # idfkey, nlst, expected
     )
     for idfkey, nlst, expected in tdata:
         idf = IDF(StringIO(idftxt))

@@ -48,11 +48,11 @@ def hasextensible(objidd):
     """
     objidd0 = objidd[0]
     keys = objidd0.keys()
-    ekey = [key for key in keys if key.startswith('extensible')]
+    ekey = [key for key in keys if key.startswith("extensible")]
     if ekey:
         ekey = ekey[0]
         ekey.strip()
-        key, val = ekey.split(':')
+        key, val = ekey.split(":")
         val = int(val)
         return val
     else:
@@ -86,6 +86,6 @@ def beginextensible_at(objidd):
     extensibleval = hasextensible(objidd)
     if extensibleval:
         for i, idditem in enumerate(objidd):
-            if u'begin-extensible' in idditem:
+            if "begin-extensible" in idditem:
                 return i
     return None

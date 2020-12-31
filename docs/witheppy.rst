@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     witheppy.eppyhelpers
+    witheppy.noteppy
 
 Submodules
 ----------

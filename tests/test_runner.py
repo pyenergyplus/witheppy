@@ -21,23 +21,20 @@ from eppy import modeleditor
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-RESOURCES_DIR = os.path.join(THIS_DIR, os.pardir, 'witheppy/resources')
+RESOURCES_DIR = os.path.join(THIS_DIR, os.pardir, "witheppy/resources")
 
-IDD_FILES = os.path.join(RESOURCES_DIR, 'iddfiles')
-IDF_FILES = os.path.join(RESOURCES_DIR, 'idffiles')
+IDD_FILES = os.path.join(RESOURCES_DIR, "iddfiles")
+IDF_FILES = os.path.join(RESOURCES_DIR, "idffiles")
 try:
     VERSION = os.environ["ENERGYPLUS_INSTALL_VERSION"]  # used in CI files
 except KeyError:
-    VERSION = '9-0-1'  # current default for integration tests on local system
-TEST_IDF_NAME = 'smallfile.idf'
-TEST_IDF = "V{}/{}".format(VERSION[:3].replace('-', '_'), TEST_IDF_NAME)
-TEST_EPW = 'USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw'
-TEST_IDD = "Energy+V{}.idd".format(VERSION.replace('-', '_'))
-TEST_OLD_IDD = 'Energy+V7_2_0.idd'
-(eplus_exe,
-    eplus_weather) = install_paths(VERSION,
-                                   os.path.join(IDD_FILES,
-                                                TEST_IDD))
+    VERSION = "9-0-1"  # current default for integration tests on local system
+TEST_IDF_NAME = "smallfile.idf"
+TEST_IDF = "V{}/{}".format(VERSION[:3].replace("-", "_"), TEST_IDF_NAME)
+TEST_EPW = "USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
+TEST_IDD = "Energy+V{}.idd".format(VERSION.replace("-", "_"))
+TEST_OLD_IDD = "Energy+V7_2_0.idd"
+(eplus_exe, eplus_weather) = install_paths(VERSION, os.path.join(IDD_FILES, TEST_IDD))
 
 reload(modeleditor)
 iddfile = os.path.join(IDD_FILES, TEST_IDD)
@@ -51,6 +48,7 @@ idf = modeleditor.IDF(fname1, TEST_EPW)
 
 class TestEPLaunch_Run(object):
     """tests for eplaunch_run"""
+
     def setup(self):
         runfolder = "runfolder"
         self.runpath = os.path.join(THIS_DIR, runfolder)
@@ -60,22 +58,25 @@ class TestEPLaunch_Run(object):
         runidffile = os.path.join(self.runpath, TEST_IDF_NAME)
         shutil.copy(fname1, runidffile)
         self.idf = modeleditor.IDF(runidffile, TEST_EPW)
-        expected_files = ['{}.audit',
-                          '{}.eso',
-                          '{}.shd',
-                          '{}.bnd',
-                          '{}.idf',
-                          '{}Sqlite.err',
-                          '{}.eio',
-                          '{}.mdd',
-                          '{}Table.htm',
-                          '{}.end',
-                          '{}.mtd',
-                          '{}.err',
-                          '{}.rdd']
+        expected_files = [
+            "{}.audit",
+            "{}.eso",
+            "{}.shd",
+            "{}.bnd",
+            "{}.idf",
+            "{}Sqlite.err",
+            "{}.eio",
+            "{}.mdd",
+            "{}Table.htm",
+            "{}.end",
+            "{}.mtd",
+            "{}.err",
+            "{}.rdd",
+        ]
         idf_noext = TEST_IDF_NAME.split(".")[0]
-        self.expected_files = [expected_file.format(idf_noext)
-                               for expected_file in expected_files]
+        self.expected_files = [
+            expected_file.format(idf_noext) for expected_file in expected_files
+        ]
 
     def test_eplaunch_run(self):
         """py.test for eplaunch_run"""

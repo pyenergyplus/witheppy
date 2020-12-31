@@ -1,3 +1,8 @@
+2020-12-31
+----------
+
+- make the ipython documentation work on ``witheppy`` -> DONE
+
 2019-05-06
 ----------
 

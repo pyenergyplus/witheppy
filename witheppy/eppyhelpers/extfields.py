@@ -21,6 +21,7 @@ from __future__ import unicode_literals
 from witheppy.eppyhelpers import iddhelpers
 
 from itertools import chain
+
 try:
     from itertools import zip_longest  # python3
 except ImportError as e:
@@ -36,7 +37,7 @@ def grouper(iterable, n, fillvalue=None):
     return zip_longest(*args, fillvalue=fillvalue)
 
 
-def extendlist(lst, size, fillwith=''):
+def extendlist(lst, size, fillwith=""):
     """extend a list to length size using fillwith"""
     blank = [None] * size
     return [i for i, j in list(zip_longest(lst, blank, fillvalue=fillwith))]
@@ -104,7 +105,7 @@ def list2extensiblefields(idfobject, lst):
         ulst = lst
     #
     # in case the fieldvalues don't extend upto begin-extensible
-    fieldvalues = extendlist(idfobject.fieldvalues, start+1)
+    fieldvalues = extendlist(idfobject.fieldvalues, start + 1)
     #
     idfobject.obj = fieldvalues[:start] + ulst
     # cannot assign to idfobject.fieldvalues, since it is readonly
