@@ -10,8 +10,8 @@ env:
   - PYTHON=3.5 EPPY_INTEGRATION=True ENERGYPLUS_VERSION=9.0.1 ENERGYPLUS_SHA=bb7ca4f0da ENERGYPLUS_INSTALL_VERSION=9-0-1
 
 language: python
-# python:
-#   - "3.7"
+python:
+  - "3.6"
 
 before_install:
   # install EnergyPlus
