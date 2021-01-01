@@ -30,10 +30,10 @@ before_install:
 
   # install python
 
-  # actiate venv
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then virtualenv venv; fi
-  - source venv/bin/activate;
-  - python --version;
+  # # actiate venv
+  # - if [ "$TRAVIS_OS_NAME" == "linux" ]; then virtualenv venv; fi
+  # - source venv/bin/activate;
+  # - python --version;
 
   # coverage and testing requirements
   - pip install --upgrade setuptools
