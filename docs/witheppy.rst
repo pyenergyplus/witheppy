@@ -12,6 +12,22 @@ Subpackages
 Submodules
 ----------
 
+witheppy.ephtml module
+----------------------
+
+.. automodule:: witheppy.ephtml
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+witheppy.runandget module
+-------------------------
+
+.. automodule:: witheppy.runandget
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 witheppy.runner module
 ----------------------
 

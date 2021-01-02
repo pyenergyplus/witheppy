@@ -21,7 +21,7 @@ import tempfile
 from eppy import modeleditor
 from eppy.pytest_helpers import do_integration_tests
 from eppy.runner.run_functions import install_paths, EnergyPlusRunError
-import eppy.experimental.runandget as runandget
+import witheppy.runandget as runandget
 from eppy.results import readhtml
 
 import pprint
@@ -54,7 +54,7 @@ def makeidf():
 
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-RESOURCES_DIR = os.path.join(THIS_DIR, os.pardir, os.pardir, "eppy", "resources")
+RESOURCES_DIR = os.path.join(THIS_DIR, os.pardir, "witheppy", "resources")
 IDD_FILES = os.path.join(RESOURCES_DIR, "iddfiles")
 IDF_FILES = os.path.join(RESOURCES_DIR, "idffiles")
 try:

@@ -22,7 +22,7 @@ import bz2
 
 
 from eppy.results import readhtml
-from eppy.experimental import ephtml
+from witheppy import ephtml
 
 # TODO move ephtml to eppy.readhtml
 
