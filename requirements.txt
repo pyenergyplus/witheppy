@@ -1,3 +1,6 @@
 eppy
 # pip install -e ../eppy
 # -e ../eppy
+
+# needed for readthedocs
+nbsphinx
