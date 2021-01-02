@@ -2,6 +2,13 @@
 History
 =======
 
+2021-01-01
+----------
+
+- fixed issue #27
+    - **Problem:** experimental.runadget() was written in eppy. It should be in witheppy
+    - **Solution:** moved runadget() to witheppy
+
 2019-05-23
 ----------
 

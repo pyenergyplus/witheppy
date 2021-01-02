@@ -9,6 +9,7 @@ Welcome to witheppy's documentation!
    installation
    usage
    userdocs
+   runandget
    modules
    contributing
    authors

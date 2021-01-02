@@ -7,8 +7,11 @@ dist: trusty
 sudo: required 
 
 env:
-  - PYTHON=2.7 EPPY_INTEGRATION=True ENERGYPLUS_VERSION=9.0.1 ENERGYPLUS_SHA=bb7ca4f0da ENERGYPLUS_INSTALL_VERSION=9-0-1
   - PYTHON=3.5 EPPY_INTEGRATION=True ENERGYPLUS_VERSION=9.0.1 ENERGYPLUS_SHA=bb7ca4f0da ENERGYPLUS_INSTALL_VERSION=9-0-1
+
+language: python
+python:
+  - "3.6"
 
 before_install:
   # install EnergyPlus
@@ -27,10 +30,10 @@ before_install:
 
   # install python
 
-  # actiate venv
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then virtualenv venv; fi
-  - source venv/bin/activate;
-  - python --version;
+  # # actiate venv
+  # - if [ "$TRAVIS_OS_NAME" == "linux" ]; then virtualenv venv; fi
+  # - source venv/bin/activate;
+  # - python --version;
 
   # coverage and testing requirements
   - pip install --upgrade setuptools
@@ -39,7 +42,7 @@ before_install:
   - pip install codecov
 
 install:
-  - python setup.py install
+  - python3 setup.py install
 
 script: py.test ./tests --cov=./ -v
 

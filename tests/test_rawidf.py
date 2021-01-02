@@ -38,28 +38,33 @@ def test_readrawidf():
     CONTINUOUS;              !- Numeric Type
     """
     expected = {
-        "version".upper():[["version", "9.0"]],
-        "Timestep".upper():[["Timestep", "4"]],
-        "ScheduleTypeLimits".upper():[["ScheduleTypeLimits", "Fraction", "0.0", "1.0", "CONTINUOUS"], ["ScheduleTypeLimits", "Other", "0.0", "1.0", "CONTINUOUS"]]
-        }
+        "version".upper(): [["version", "9.0"]],
+        "Timestep".upper(): [["Timestep", "4"]],
+        "ScheduleTypeLimits".upper(): [
+            ["ScheduleTypeLimits", "Fraction", "0.0", "1.0", "CONTINUOUS"],
+            ["ScheduleTypeLimits", "Other", "0.0", "1.0", "CONTINUOUS"],
+        ],
+    }
     result = rawidf.readrawidf(StringIO(txt))
     assert result == expected
-    
+
+
 def test_rawidf2str():
     """py.test rawidf2str"""
-    rawdata = {
-        "version".upper():[["version", "9.0"]]
-        }
+    rawdata = {"version".upper(): [["version", "9.0"]]}
     expected = """VERSION,
     9.0;
-"""  
+"""
     result = rawidf.rawidf2str(rawdata)
     assert result == expected
     rawdata = {
-        "version".upper():[["version", "9.0"]],
-        "Timestep".upper():[["Timestep", "4"]],
-        "ScheduleTypeLimits".upper():[["ScheduleTypeLimits", "Fraction", "0.0", "1.0", "CONTINUOUS"], ["ScheduleTypeLimits", "Other", "0.0", "1.0", "CONTINUOUS"]]
-        }
+        "version".upper(): [["version", "9.0"]],
+        "Timestep".upper(): [["Timestep", "4"]],
+        "ScheduleTypeLimits".upper(): [
+            ["ScheduleTypeLimits", "Fraction", "0.0", "1.0", "CONTINUOUS"],
+            ["ScheduleTypeLimits", "Other", "0.0", "1.0", "CONTINUOUS"],
+        ],
+    }
     order = ["TIMESTEP", "VERSION", "SCHEDULETYPELIMITS", "badkey"]
     expected = """TIMESTEP,
     4;
@@ -78,6 +83,6 @@ SCHEDULETYPELIMITS,
      0.0,
      1.0,
     CONTINUOUS;
-"""  
+"""
     result = rawidf.rawidf2str(rawdata, order)
     assert result == expected

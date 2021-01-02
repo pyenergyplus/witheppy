@@ -34,15 +34,17 @@ def eplaunch_run(idf):
     NoneType
     """
     fname = idf.idfname
-    weather = None # add weather args after bugfix for issue #236
+    weather = None  # add weather args after bugfix for issue #236
     if not weather:
         wfile = idf.epw
     else:
         wfile = weather
     folder = os.path.dirname(fname)
     noext = os.path.splitext(os.path.basename(fname))[0]
-    idf.run(weather=wfile,
-            expandobjects=True,
-            output_directory=folder,
-            output_prefix=noext,
-            output_suffix="C")
+    idf.run(
+        weather=wfile,
+        expandobjects=True,
+        output_directory=folder,
+        output_prefix=noext,
+        output_suffix="C",
+    )
