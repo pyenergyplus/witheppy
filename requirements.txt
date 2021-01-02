@@ -1,3 +1,3 @@
-# eppy
+eppy
 # pip install -e ../eppy
--e ../eppy
+# -e ../eppy
