@@ -22,9 +22,8 @@ import bz2
 
 
 from eppy.results import readhtml
-from witheppy import ephtml
+from eppy.results import fasthtml
 
-# TODO move ephtml to eppy.readhtml
 
 # fname = "/Applications/EnergyPlus-9-3-0/ExampleFiles/1ZoneEvapCooler.idf"
 # idf.run(output_suffix='L')
@@ -266,9 +265,9 @@ def getfromhtm(fhandle, htm_options):
         # json conversion makes it a list
         # so now testing is easier
     elif isinstance(htm_options.setdefault("tableindex", None), int):
-        header, table = ephtml.ahtmltable(fhandle, htm_options["tableindex"])
+        header, table = fasthtml.tablebyindex(fhandle, htm_options["tableindex"])
     elif htm_options.setdefault("tablename", None):
-        header, table = ephtml.htmlonetable(fhandle, htm_options["tablename"])
+        header, table = fasthtml.tablebyname(fhandle, htm_options["tablename"])
     if htm_options.setdefault("table"):
         returndict["result"] = [header, table]
     elif htm_options.setdefault("rows"):

@@ -71,8 +71,8 @@ RESULT_DIR = Path("./resultsdir")
 @pytest.mark.parametrize(
     "filename, content, expected",
     [
-        ("dummypath.txt", "content", "content"),  # filename, content, expected
-    ],
+        ("dummypath.txt", "content", "content"),
+    ],  # filename, content, expected
 )
 def test_getfile(tmp_path, filename, content, expected):
     """py.test for getfile

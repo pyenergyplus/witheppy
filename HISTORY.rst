@@ -2,6 +2,15 @@
 History
 =======
 
+2021-01-22
+----------
+
+fixed issue #30
+
+:Problem: remove ephtml - this functionality is present in eppy
+:Solution: removed ephtml- now using eppy.results.fasthtml
+
+
 2021-01-01
 ----------
 
