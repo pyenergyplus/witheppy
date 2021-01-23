@@ -47,8 +47,7 @@ def makeidf():
     )
     # put and sql output
     idf.newidfobject(
-        "Output:SQlite",
-        Option_Type="simple",
+        "Output:SQlite", Option_Type="simple",
     )
     return idf
 
@@ -70,9 +69,7 @@ RESULT_DIR = Path("./resultsdir")
 
 @pytest.mark.parametrize(
     "filename, content, expected",
-    [
-        ("dummypath.txt", "content", "content"),  # filename, content, expected
-    ],
+    [("dummypath.txt", "content", "content"),],  # filename, content, expected
 )
 def test_getfile(tmp_path, filename, content, expected):
     """py.test for getfile
@@ -284,10 +281,7 @@ htmltabletxt = """<!DOCTYPE html>
     [
         (
             htmltabletxt,
-            dict(
-                whichfile="htm",
-                as_tables=True,
-            ),
+            dict(whichfile="htm", as_tables=True,),
             {
                 "whichfile": "htm",
                 "as_tables": True,
@@ -497,9 +491,7 @@ def test_col_list2index(row, col_list, expected):
             """col1, col2, col3
 1, 2, 3
 11, 22, 33""",
-            [
-                1,
-            ],
+            [1,],
             [["col2"], ["2"], ["22"]],
         ),  # csvtxt, col_list, expected
         (
@@ -521,17 +513,7 @@ def test_col_list2index(row, col_list, expected):
 1, 2
 11, 22""",
             ["col3"],
-            [
-                [
-                    "col3",
-                ],
-                [
-                    "",
-                ],
-                [
-                    "",
-                ],
-            ],
+            [["col3",], ["",], ["",],],
         ),  # csvtxt, col_list, expected
     ],
 )
@@ -681,12 +663,7 @@ def donothing(stuff):
         ),  # getdict, func, expected
         # csv cols
         (
-            dict(
-                resultname=dict(
-                    whichfile="csv",
-                    cols=[1, "Date/Time"],
-                )
-            ),
+            dict(resultname=dict(whichfile="csv", cols=[1, "Date/Time"],)),
             firstrow,
             [
                 "Environment:Site Outdoor Air Drybulb Temperature [C](TimeStep)",

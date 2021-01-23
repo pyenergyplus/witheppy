@@ -13,11 +13,13 @@ from __future__ import unicode_literals
 
 import os
 import shutil
+import pytest
 
 from witheppy.runner import eplaunch_run
 from six.moves import reload_module as reload
 from eppy.runner.run_functions import install_paths
 from eppy import modeleditor
+from eppy.pytest_helpers import do_integration_tests
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -78,6 +80,9 @@ class TestEPLaunch_Run(object):
             expected_file.format(idf_noext) for expected_file in expected_files
         ]
 
+    @pytest.mark.skipif(
+        not do_integration_tests(), reason="$EPPY_INTEGRATION env var not set"
+    )
     def test_eplaunch_run(self):
         """py.test for eplaunch_run"""
         eplaunch_run(self.idf)
