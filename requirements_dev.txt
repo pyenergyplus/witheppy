@@ -10,5 +10,6 @@ twine==1.12.1
 
 pytest==6.2.1
 pytest-runner==5.2
+# nbconvert==5.6.1 # for older versions of mac.
 nbsphinx
 black

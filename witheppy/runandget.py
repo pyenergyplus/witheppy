@@ -384,5 +384,8 @@ def runandget(idf, runoptions, getdict, json_it=False, compress_it=False):
 def anon_runandget(idf, getdict, json_it=False, compress_it=False):
     """run the idf in a temp library and return results"""
     with tempfile.TemporaryDirectory() as tmp_dir:
-        runoptions = dict(output_directory=tmp_dir, readvars=True,)
+        runoptions = dict(
+            output_directory=tmp_dir,
+            readvars=True,
+        )
         return runandget(idf, runoptions, getdict, json_it, compress_it)
