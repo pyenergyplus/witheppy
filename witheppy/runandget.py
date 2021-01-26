@@ -384,7 +384,7 @@ def runandget(idf, runoptions, getdict, json_it=False, compress_it=False):
     idfversion.extend([0] * (3 - len(idfversion)))
     idfversionstr = "-".join([str(item) for item in idfversion])
     runoptions["ep_version"] = idfversionstr
-    # 
+    #
     runs = []
     runs.append([idf, runoptions])
     num_CPUs = 1
