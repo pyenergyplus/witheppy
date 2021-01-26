@@ -2,6 +2,14 @@
 History
 =======
 
+2021-01-25
+----------
+
+fixed issue #32
+
+:Problem: runandget get uses idf.run() which does not allow runs simultaneously
+:Solution: use idfRUNs() which allows multiple runs simultaneously 
+
 2021-01-22
 ----------
 
