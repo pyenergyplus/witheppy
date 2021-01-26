@@ -23,6 +23,7 @@ import bz2
 
 from eppy.results import readhtml
 from eppy.results import fasthtml
+from eppy.runner.run_functions import runIDFs
 
 
 # fname = "/Applications/EnergyPlus-9-3-0/ExampleFiles/1ZoneEvapCooler.idf"
@@ -377,7 +378,17 @@ def getcsvcols(fhandle, col_list):
 
 def runandget(idf, runoptions, getdict, json_it=False, compress_it=False):
     """run the idf and return the results"""
-    idf.run(**runoptions)
+    # idf.run(**runoptions)
+    # idf.run() does not allow simultaeous runs. -> using runIDFs
+    idfversion = idf.idfobjects["version"][0].Version_Identifier.split(".")
+    idfversion.extend([0] * (3 - len(idfversion)))
+    idfversionstr = "-".join([str(item) for item in idfversion])
+    runoptions["ep_version"] = idfversionstr
+    # 
+    runs = []
+    runs.append([idf, runoptions])
+    num_CPUs = 1
+    runIDFs(runs, num_CPUs)
     return getrun(runoptions, getdict, json_it, compress_it)
 
 
