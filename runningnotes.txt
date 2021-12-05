@@ -1,3 +1,19 @@
+2021-12-03
+----------
+
+idf.copyidfobject has a documentaiton error in the func. docs.
+wold be good to have idf.copyidfobject(origobject, Name="Something") like DUp and edit in IDFEditor
+
+2021-11-26
+----------
+
+figure this out:
+
+- in testing, the idd should be loaded only once
+- It should be possible to load a different IDD when needed
+- work with fixtures and scope to do this ?
+- looks like this should be done in eppy with a logger in the pytest
+
 2021-01-20
 ----------
 
