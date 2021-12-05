@@ -19,6 +19,7 @@ from __future__ import unicode_literals
 # from six import string_types
 
 from witheppy.eppyhelpers import iddhelpers
+from witheppy.iddcurrent import iddcurrent
 
 from itertools import chain
 
