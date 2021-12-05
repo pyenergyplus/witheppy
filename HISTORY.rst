@@ -6,6 +6,18 @@ History
 Releases
 --------
 
+release 0.1.5
+-------------
+
+2021-12-04
+~~~~~~~~~~
+
+fixed issue #39
+
+:Problem: Need a function to merge 2 or more zones
+:Solution: wrote eppyhelpers.mergezones(idf, mergeznames)
+
+
 release 0.1.4
 -------------
 
