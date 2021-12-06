@@ -20,6 +20,14 @@ witheppy.eppyhelpers.geometry module
    :undoc-members:
    :show-inheritance:
 
+witheppy.eppyhelpers.hvac module
+--------------------------------
+
+.. automodule:: witheppy.eppyhelpers.hvac
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 witheppy.eppyhelpers.iddhelpers module
 --------------------------------------
 

@@ -1,7 +1,15 @@
+2021-12-06
+----------
+
+- test hvac.py
+	- open base file, remove extra design days (do manually)
+	- set run period to 1 week (do manually)
+	run using eplaunch
+
 2021-12-03
 ----------
 
-idf.copyidfobject has a documentaiton error in the func. docs.
+idf.copyidfobject has a documentaiton error in the docstring
 wold be good to have idf.copyidfobject(origobject, Name="Something") like DUp and edit in IDFEditor
 
 2021-11-26
