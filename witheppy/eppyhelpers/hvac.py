@@ -146,6 +146,13 @@ def putexhaust(idf, zone, exhaust_fan):
     """plug the exhaust_fan into the zone
     
     Will raise HasExhaustFanError exception, the zone has and exhaust fan
+    
+    Usage::
+    
+        greatexhaust = idf.newidfobject(FAN:ZONEEXHAUST, Name='Great Exhaust', ) # with other fields
+        zones = idf.idfobjects['zone']
+        zone = zones[2] # the 3rd zone
+        putexhaust(idf, zone, greatexhaust)
 
     Parameters
     ----------
@@ -153,6 +160,8 @@ def putexhaust(idf, zone, exhaust_fan):
         this idf model
     zone : eppy.bunch_subclass.EpBunch
         the zone you are checking for exhaust (type ZONE)
+    exhaust_fan: eppy.bunch_subclass.EpBunch
+        type FAN:ZONEEXHAUST. This should be made or copied to this idf
 
     Returns
     -------
