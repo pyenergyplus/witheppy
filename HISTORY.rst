@@ -6,6 +6,17 @@ History
 Releases
 --------
 
+release 0.1.6
+-------------
+
+Date:   Mon Dec 6 14:37:38 2021 -0800
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+fixed issue #42
+
+:Problem: Need a function to add or remove exhaust fans from a zone
+:Solution: putexhaust(), removeexhaust(), hasexhaust(), findexhaust() in eppyhelpers.hvac
+
 release 0.1.5
 -------------
 
