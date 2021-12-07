@@ -1,3 +1,21 @@
+2021-12-07
+----------
+
+- tutorial for hvac, mergezones
+- hvac
+	- disconnectfan
+	- removefan
+	- fanzonemap
+- set up continious testing
+- instructions for
+	- mergin pull request
+	- use gitpython to generate the history file 
+		- parsing the history.rst file to insert seems harder 
+	- instructions for contributors
+	- github release instructions
+	- pypi release instructions
+
+
 2021-12-06
 ----------
 

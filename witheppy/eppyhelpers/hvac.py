@@ -242,6 +242,12 @@ def removeexhaust(idf, zone):
         return exhfan
     else:
         return None
+        
+# - Possible new functions
+#     - disconnectfan
+#     - removefan
+#     - fanzonemap
+        
 
 # TODO putexhaust has a frigle point related to IDD. See:
     # next two lines can break if IDD changes (see in putexhaust())
