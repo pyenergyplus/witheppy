@@ -210,6 +210,7 @@ def putexhaust(idf, zone, exhaust_fan):
 
 def removeexhaust(idf, zone):
     """remove the exhaust fan from zone if the zone has one
+    
     Parameters
     ----------
     idf: eppy.modeleditor.IDF
