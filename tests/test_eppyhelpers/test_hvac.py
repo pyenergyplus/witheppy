@@ -156,7 +156,6 @@ Fan:ZoneExhaust,
 def idfsnippet(makeIDFfortesting):
     fIDF = makeIDFfortesting
     idf = fIDF(StringIO(idftxt))
-    idf.saveas("a.idf")
     return idf
 
 
@@ -247,7 +246,6 @@ def test_putexhaust(idfsnippet):
     eqlist = hvac.findequipmentlist(idf, zone)
     extlist = extfields.extensiblefields2list(eqlist)
     objecttypes = [item for item in extlist if item[0].upper() == "FAN:ZONEEXHAUST"]
-    idf.saveas("b.idf")
     assert objecttypes # has an item in it ie. "FAN:ZONEEXHAUST"
     # test when there is an existing exhaust
     with pytest.raises(hvac.HasExhaustFanError):

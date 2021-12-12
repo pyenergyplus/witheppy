@@ -2,13 +2,14 @@ Welcome to witheppy's documentation!
 ======================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    readme
    installation
    usage
    userdocs
+   eppyhelpers
    runandget
    modules
    contributing
