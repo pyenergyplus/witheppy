@@ -210,6 +210,7 @@ def putexhaust(idf, zone, exhaust_fan):
 
 def removeexhaust(idf, zone):
     """remove the exhaust fan from zone if the zone has one
+    
     Parameters
     ----------
     idf: eppy.modeleditor.IDF
@@ -241,6 +242,12 @@ def removeexhaust(idf, zone):
         return exhfan
     else:
         return None
+        
+# - Possible new functions
+#     - disconnectfan
+#     - removefan
+#     - fanzonemap
+        
 
 # TODO putexhaust has a frigle point related to IDD. See:
     # next two lines can break if IDD changes (see in putexhaust())

@@ -1,15 +1,15 @@
-pip
+pip==21.3.1
 bump2version==1.0.1
 wheel==0.32.1
 watchdog==0.9.0
 flake8==3.5.0
 tox==3.5.2
 coverage==4.5.1
-Sphinx
+Sphinx == 4.3.1
 twine==1.12.1
 
 pytest==6.2.1
 pytest-runner==5.2
 # nbconvert==5.6.1 # for older versions of mac.
-nbsphinx
+nbsphinx==0.8.7
 black
