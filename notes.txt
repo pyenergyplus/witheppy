@@ -13,7 +13,8 @@ Done on witheppy
 
 TODO on witheppy
 
-- set up web hooks on readthedocs
+- set up web hooks on readthedocs - issue#50
+	- see coments on how to do this.
 - document the steps for tag, release and pypi in CONTRIBUTING.rst
 - continious testing -> is on hold for the moment. It works on santoshphilip account.
 
