@@ -1,9 +1,24 @@
 a place to keep notes. 
 
 
-2021-01-01
+2021-12-12
 ----------
 
+Actions taken here that will be also done in eppy repository
+
+Done on witheppy
+
+- witheppy issue #11 - updated 	CONTRIBUTING.RST
+- use fixtures to set up IDD
+
+TODO on witheppy
+
+- set up web hooks on readthedocs
+- document the steps for tag, release and pypi in CONTRIBUTING.rst
+- continious testing -> is on hold for the moment. It works on santoshphilip account.
+
+2021-01-01
+----------
 
 from eppy/notes.txt
 
