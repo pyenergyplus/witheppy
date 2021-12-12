@@ -132,7 +132,6 @@ def idfsnippet(makeIDFfortesting):
         Zone_Name="ZONE5",
         Outside_Boundary_Condition_Object="INTWALLZONE4",
     )
-    idf.saveas("a.idf")
     return idf
 
 
@@ -205,7 +204,6 @@ def test_mergezones(idfsnippet):
     # --
     idf = geometry.mergezones(idf, ["ZONE3", "ZONE4", "ZONE5"])
     print(extwallzone5.coords)
-    idf.saveas("b.idf")
     zones = idf.idfobjects["zone"]
     znames = [zone.Name for zone in zones]
     # check if the merged zones are gone
