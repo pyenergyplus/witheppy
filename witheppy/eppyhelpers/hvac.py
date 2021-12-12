@@ -220,7 +220,7 @@ def removeexhaust(idf, zone):
 
     Returns
     -------
-    exhaust_fan: eppy.bunch_subclass.EpBunch
+    exhaust_fan: eppy.bunch_subclass.EpBunch 
         FAN:ZONEEXHAUST object removed from this zone
     
     """
