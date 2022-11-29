@@ -3,4 +3,4 @@ eppy==0.5.56
 # -e ../eppy
 
 # needed for readthedocs
-nbsphinx==0.8.7
+nbsphinx==0.8.10
