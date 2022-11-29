@@ -6,6 +6,15 @@ History
 Releases
 --------
 
+2022-11-29
+----------
+
+fixed issue #57
+
+:Problem: formatting errors in user documentation
+:Solution: fixed the errors
+
+
 release 0.1.8
 -------------
 
