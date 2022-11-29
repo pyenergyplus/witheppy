@@ -1,3 +1,17 @@
+2022-11-29
+----------
+
+on the mac silicon laptop there is some python problem. Jupyter notebook is giving warning ::
+
+    Could not find platform independent libraries <prefix>
+
+make docs is giving error::
+
+    WARNING: Pygments lexer name 'ipython3' is not known
+
+Check if this is an issue on other computers
+    
+
 2021-12-07
 ----------
 
