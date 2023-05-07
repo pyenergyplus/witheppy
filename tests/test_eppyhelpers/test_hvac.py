@@ -8,7 +8,7 @@
 
 import pytest
 from io import StringIO
-from witheppy.eppyhelpers import hvac
+from witheppy.hvachelpers import exhaust
 import witheppy.eppyhelpers.extfields as extfields
 
 idftxt = """
@@ -163,10 +163,10 @@ def test_findequipmentconnection(idfsnippet):
     """py.test for findequipmentconnection"""
     idf = idfsnippet
     zone = idf.idfobjects["zone"][0]
-    result = hvac.findequipmentconnection(idf, zone)
+    result = exhaust.findequipmentconnection(idf, zone)
     assert result.Zone_Name == zone.Name
     zone = idf.newidfobject("zone", "gumby")
-    result = hvac.findequipmentconnection(idf, zone)
+    result = exhaust.findequipmentconnection(idf, zone)
     assert result == None
 
 
@@ -174,14 +174,14 @@ def test_findequipmentlist(idfsnippet):
     """py.test for findequipmentlist"""
     idf = idfsnippet
     zone = idf.idfobjects["zone"][0]
-    result = hvac.findequipmentlist(idf, zone, testing=True)
+    result = exhaust.findequipmentlist(idf, zone, testing=True)
     assert result[-1].Zone_Name == zone.Name
     assert result[-1].Zone_Conditioning_Equipment_List_Name == result[0].Name
     zone = idf.newidfobject("zone", "gumby")
-    result = hvac.findequipmentlist(idf, zone)
+    result = exhaust.findequipmentlist(idf, zone)
     assert result == None
     econnction = idf.newidfobject("ZoneHVAC:EquipmentConnections", Zone_Name="gumby")
-    result = hvac.findequipmentlist(idf, zone)
+    result = exhaust.findequipmentlist(idf, zone)
     assert result == None
 
 
@@ -189,13 +189,13 @@ def test_hasexhaust(idfsnippet):
     """py.test for hasexhaust"""
     idf = idfsnippet
     zone = idf.idfobjects["zone"][0]
-    result = hvac.hasexhaust(idf, zone)
+    result = exhaust.hasexhaust(idf, zone)
     assert result == False
     zone = idf.idfobjects["zone"][1]
-    result = hvac.hasexhaust(idf, zone)
+    result = exhaust.hasexhaust(idf, zone)
     assert result == "Zone 2 Exhausts"
     zone = idf.idfobjects["zone"][2]
-    result = hvac.hasexhaust(idf, zone)
+    result = exhaust.hasexhaust(idf, zone)
     assert result == "Zone 3 Exhausts"
 
 
@@ -203,12 +203,12 @@ def test_findexhaust(idfsnippet):
     """py.test for findexhaust"""
     idf = idfsnippet
     zone = idf.idfobjects["zone"][0]
-    result = hvac.findexhaust(idf, zone)
+    result = exhaust.findexhaust(idf, zone)
     assert result == None
     # ---
     exfanname = "Zone 2 Exhaust Fan"
     zone = idf.idfobjects["zone"][1]
-    result = hvac.findexhaust(idf, zone)
+    result = exhaust.findexhaust(idf, zone)
     assert result.Name == exfanname
 
 
@@ -217,11 +217,11 @@ def test_removeexhaust(idfsnippet):
     idf = idfsnippet
     zones = idf.idfobjects["zone"]
     zone = zones[1]
-    eqlist = hvac.findequipmentlist(idf, zone)
-    exfan = hvac.removeexhaust(idf, zone)
+    eqlist = exhaust.findequipmentlist(idf, zone)
+    exfan = exhaust.removeexhaust(idf, zone)
     expectedname = "Zone 2 Exhaust Fan"
     assert exfan.Name == expectedname
-    assert hvac.hasexhaust(idf, zone) == False
+    assert exhaust.hasexhaust(idf, zone) == False
     # test if exhaust fan has been removed from 'ZONEHVAC:EQUIPMENTLIST'
     extlist = extfields.extensiblefields2list(eqlist)
     eqlistitems = [
@@ -230,7 +230,7 @@ def test_removeexhaust(idfsnippet):
     assert not eqlistitems  # list should be empty
     # test when you try to remove a nonexistent 
     zone = zones[0]
-    exfan = hvac.removeexhaust(idf, zone)
+    exfan = exhaust.removeexhaust(idf, zone)
     assert exfan == None
 
 def test_putexhaust(idfsnippet):
@@ -239,19 +239,19 @@ def test_putexhaust(idfsnippet):
     zones = idf.idfobjects["zone"]
     zone = zones[0]
     exfan = idf.newidfobject("Fan:ZoneExhaust", Name="zone1_exhaust_fan")
-    hvac.putexhaust(idf, zone, exfan)
-    assert hvac.hasexhaust(idf, zone) == "zone1_exhaust_fan Node List"
-    assert hvac.findexhaust(idf, zone) == exfan
+    exhaust.putexhaust(idf, zone, exfan)
+    assert exhaust.hasexhaust(idf, zone) == "zone1_exhaust_fan Node List"
+    assert exhaust.findexhaust(idf, zone) == exfan
     # test if ex fan is in equiplist
-    eqlist = hvac.findequipmentlist(idf, zone)
+    eqlist = exhaust.findequipmentlist(idf, zone)
     extlist = extfields.extensiblefields2list(eqlist)
     objecttypes = [item for item in extlist if item[0].upper() == "FAN:ZONEEXHAUST"]
     assert objecttypes # has an item in it ie. "FAN:ZONEEXHAUST"
     # test when there is an existing exhaust
-    with pytest.raises(hvac.HasExhaustFanError):
+    with pytest.raises(exhaust.HasExhaustFanError):
         zone = zones[1]
         exfan = idf.newidfobject("Fan:ZoneExhaust", Name="zone2_exhaust_fan")
-        hvac.putexhaust(idf, zone, exfan)
+        exhaust.putexhaust(idf, zone, exfan)
         
 
 # TODO add and remove exhaust fans in multiple example files - to see how robust it is.
