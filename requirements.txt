@@ -1,6 +1,6 @@
-eppy==0.5.56
+eppy==0.5.63
 # pip install -e ../eppy
 # -e ../eppy
 
 # needed for readthedocs
-nbsphinx==0.8.10
+nbsphinx==0.9.2
