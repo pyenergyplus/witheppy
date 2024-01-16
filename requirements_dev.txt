@@ -7,7 +7,7 @@ tox==4.6.3
 coverage==7.2.7
 Sphinx==6.2.1
 sphinx-rtd-theme==1.2.2
-readthedocs-sphinx-search==0.3.1
+readthedocs-sphinx-search==0.3.2
 twine==4.0.2
 
 pytest==7.4.0
